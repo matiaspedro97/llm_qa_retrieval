@@ -1,0 +1,48 @@
+{
+    "project_name": "LLM_QA",
+    "run_name": "Demo Run",
+    "run_description": "Experiment for demonstrating a QA LLM chain",
+    "modules": {
+        "syncher": {
+            "class_": "sync.wandb.WBSyncher",
+            "params_": {
+                "project_name": "LLM_QA",
+                "run_name": "world_news_QA_google_llm2",
+                "config_args": {
+                    "run_id": 1,
+                    "run_description": "Running experiments handling QA answering through World News context."
+                }
+            }
+        },
+        "splitter": {
+            "class_": "data.split.DocSplitter",
+            "params_": {
+                "chunk_size": 500, 
+                "chunk_overlap": 80, 
+                "add_start_index": true
+            }
+        },
+        "searcher": {
+            "class_": "features.embeddings.ChromaDBSearcher",
+            "params_": {
+                "name": "webnews_articles"
+            }
+        },
+        "template": {
+            "class_": "models.llm.PTGenerator",
+            "params_": {
+                "prompt_template": "Use the following pieces of context to answer the question at the end. Answer strictly to the question asked and only based on the context given, not giving to much background information. If you don't know the answer, just say that you don't know, don't try to make up an answer when you don't have information to do so. Your answer will be evaluated based on its (1) truthfulness, (2) conciseness, and (3) realism.\n{context}\nQuestion: {question}\nHelpful Answer:",
+                "tags": ["context", "question"]
+            }
+        },
+        "generator": {
+            "class_": "models.llm.LLMHFHubChain",
+            "params_": {
+                "model_name": "tiiuae/falcon-7b-instruct", 
+                "temperature": 0.4,
+                "repetition_penalty": 1.1,
+                "max_new_tokens": 128
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+name: python3.8
+channels:
+  - conda-forge
+  - defaults
+  - nvidia
+  - pytorch
+dependencies:
+  - python=3.8
+  - cudatoolkit=11.1
+  - pip
+  - virtualenv
+  - pytorch
