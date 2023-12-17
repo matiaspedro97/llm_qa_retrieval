@@ -5,7 +5,7 @@ Building an LLM-based QA Retrieval including: (1) zero-shot and (2) few shot lea
 
 Project Organization
 ------------
-
+```
 root
 |-- config
 |   |-- pipeline
@@ -76,7 +76,7 @@ root
 ├── README.md          <- The top-level README for developers using this project.
 └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-
+```
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
